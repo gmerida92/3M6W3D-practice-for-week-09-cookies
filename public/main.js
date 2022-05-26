@@ -2,17 +2,55 @@
 
 // For storing user's theme selection in cookies
 function storeTheme(themeName) {
-    // Your code here
+    let  cookie = `theme=${themeName}`;
+    document.cookie = cookie;
 }
 
 // For restoring theme from cookies, if selected by the user in the past
 function restoreTheme() {
-    // Your code here
+
+    let cookies = document.cookie;
+    let cookieArr = cookies.split('; ');
+    if(!cookies){
+        return;
+    }
+    let themeCookie = cookieArr.find(el =>{
+        // console.log(el);
+        if(el.startsWith('theme')){
+            return el;
+        }
+    })
+
+    // console.log(themeCookie);
+    let split = themeCookie.split('=');
+    console.log(split);
+
+    let theme = split[1];
+    // console.log(theme);
+
+    if(theme){
+        setTheme(theme);
+    }
+
+    //[theme=dragon, name=random]
+
 }
 
 // For clearing theme selection from cookies (reset to default)
 function clearTheme() {
-    // Your code here
+    let date = new Date('23 May 2021 20:27:00 PDT');
+    let cookieToClear = document.cookie;
+    let cookieDelete = `max-age = 0`
+
+    document.cookie = 'theme=anything;max-age=0'; //!just update the cookie with max-age;
+    console.log(document.cookie);
+
+
+    //get theme cookie by seperating the cookie into an array
+    //select theme element
+    // delete from array
+    // join array
+    // add to cookie
 }
 
 /* ================================ PHASE 3 ================================ */
